@@ -26,6 +26,6 @@ spec:
     match:
     - select:
         labels:
-            app.kubernetes.io/name: prometheus-example-app
+            app.kubernetes.io/name: fleet-simple-app
     localOutputRefs:
       - loki-output    

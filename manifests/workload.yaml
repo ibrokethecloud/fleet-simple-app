@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/name: prometheus-example-app
-  name: prometheus-example-app
+    app.kubernetes.io/name: fleet-simple-app
+  name: fleet-simple-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: prometheus-example-app
+      app.kubernetes.io/name: fleet-simple-app
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: prometheus-example-app
+        app.kubernetes.io/name: fleet-simple-app
     spec:
       containers:
-      - name: prometheus-example-app
-        image: gmehta3/demo-app:powderblue
+      - name: fleet-simple-app
+        image: gmehta3/fleet-simple-app:v1
         ports:
         - name: web
           containerPort: 8080
@@ -33,12 +33,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-example-app
+  name: fleet-simple-app
   labels:
-    app.kubernetes.io/name: prometheus-example-app
+    app.kubernetes.io/name: fleet-simple-app
 spec:
   selector:
-    app.kubernetes.io/name: prometheus-example-app
+    app.kubernetes.io/name: fleet-simple-app
   ports:
     - protocol: TCP
       port: 8080
@@ -48,7 +48,7 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-    name: prometheus-example-app
+    name: fleet-simple-app
 spec:
     rules:
     - host: hpa.demo
@@ -57,5 +57,5 @@ spec:
         - path: /
           pathType: ImplementationSpecific
           backend:
-            serviceName: prometheus-example-app
+            serviceName: fleet-simple-app
             servicePort: 8080

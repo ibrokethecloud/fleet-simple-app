@@ -1,10 +1,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: prometheus-example-app
+  name: fleet-simple-app
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: prometheus-example-app
+      app.kubernetes.io/name: fleet-simple-app
   endpoints:
   - port: web
